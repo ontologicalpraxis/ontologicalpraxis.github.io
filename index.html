@@ -3,316 +3,688 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Ontological Praxis</title>
+
   <style>
+    :root {
+      --bg: #050505;
+      --panel: #101010;
+      --panel-soft: #151515;
+      --text: #f4f1ea;
+      --muted: #b9b3a7;
+      --faint: #777064;
+      --line: #2c2c2c;
+      --accent: #e8dfc8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      background: #080808;
-      color: #f2f2f2;
+      background: var(--bg);
+      color: var(--text);
       font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.55;
     }
 
-    .wrap {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 56px 22px;
+    a {
+      color: inherit;
     }
 
-    header {
-      min-height: 72vh;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(5, 5, 5, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-nav {
       display: flex;
-      align-items: center;
-      border-bottom: 1px solid #2b2b2b;
-    }
-
-    .kicker {
-      font-family: Arial, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.1rem;
+      padding: 1rem 1.5rem;
+      font-family: Arial, Helvetica, sans-serif;
       font-size: 0.72rem;
-      color: #aaa;
-      margin-bottom: 24px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
-    h1 {
-      font-size: clamp(3rem, 9vw, 7rem);
-      line-height: 0.9;
-      font-weight: normal;
-      letter-spacing: -0.06em;
-      margin: 0 0 24px;
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
     }
 
-    .tagline {
-      font-size: clamp(1.15rem, 2.6vw, 1.7rem);
-      color: #c9c9c9;
-      max-width: 760px;
+    .site-nav a:hover {
+      color: var(--text);
+      border-color: var(--text);
     }
 
-    section {
-      border-bottom: 1px solid #2b2b2b;
+    .section {
+      padding: 5.5rem 1.5rem;
+      border-top: 1px solid var(--line);
     }
 
-    h2 {
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      line-height: 1;
-      font-weight: normal;
-      letter-spacing: -0.04em;
-      margin: 0 0 24px;
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
     }
 
-    h3 {
-      font-size: 1.45rem;
-      font-weight: normal;
-      margin: 34px 0 8px;
+    .section-kicker {
+      margin: 0 0 0.85rem;
+      color: var(--faint);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
     }
 
+    h1,
+    h2,
+    h3,
+    h4,
     p {
-      color: #d5d5d5;
-      font-size: 1.05rem;
-      max-width: 760px;
-    }
-
-    .book {
-      padding: 28px 0;
-      border-top: 1px solid #2b2b2b;
-    }
-
-    .subtitle {
-      color: #aaa;
-      font-style: italic;
       margin-top: 0;
     }
 
-    .buttons {
-      margin-top: 20px;
+    h1 {
+      max-width: 1100px;
+      margin-bottom: 1.5rem;
+      font-size: clamp(3.6rem, 12vw, 9.5rem);
+      line-height: 0.86;
+      font-weight: 400;
+      letter-spacing: -0.07em;
+    }
+
+    h2 {
+      margin-bottom: 0.85rem;
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      line-height: 0.94;
+      font-weight: 400;
+      letter-spacing: -0.055em;
+    }
+
+    h3 {
+      margin-bottom: 2rem;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.45rem);
+      line-height: 1.35;
+      font-weight: 400;
+    }
+
+    h4 {
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-size: clamp(1.25rem, 2.6vw, 2rem);
+      line-height: 1.12;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.72;
+    }
+
+    .hero {
+      min-height: 88vh;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      align-items: center;
+      padding-top: 7rem;
+      border-top: none;
+      background:
+        radial-gradient(circle at 72% 18%, rgba(255,255,255,0.075), transparent 24rem),
+        var(--bg);
     }
 
-    a.button {
-      display: inline-block;
-      border: 1px solid #f2f2f2;
-      color: #080808;
-      background: #f2f2f2;
-      text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-      font-size: 0.9rem;
+    .hero-line {
+      max-width: 800px;
+      color: var(--muted);
+      font-size: clamp(1.2rem, 2.3vw, 1.8rem);
+      line-height: 1.35;
+    }
+
+    .hero-subline {
+      max-width: 660px;
+      margin-top: 2rem;
+      color: var(--faint);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .emphasis-line {
+      color: var(--text);
+      font-size: 1.25rem;
+      line-height: 1.45;
+      margin: 2rem 0;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .process-card {
+      min-height: 230px;
+      padding: 1.4rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .process-label {
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .process-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.62;
+    }
+
+    .formula-line {
+      max-width: none;
+      margin-top: 2.5rem;
+      padding: 1.2rem 0;
+      color: var(--accent);
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      line-height: 1.4;
       letter-spacing: 0.02em;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    a.button.secondary {
-      color: #f2f2f2;
+    .section-archive-test {
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.055), transparent 32rem),
+        var(--bg);
+    }
+
+    .archive-structure {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+    }
+
+    .archive-number {
+      margin-bottom: 0.5rem;
+      color: var(--faint);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .books-grid,
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .book-card,
+    .artifact-card {
+      padding: 1.5rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .book-card h4,
+    .artifact-card h4 {
+      margin-bottom: 0.9rem;
+    }
+
+    .book-card p,
+    .artifact-card p {
+      margin-bottom: 0;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    .section-offer {
+      background: #080808;
+    }
+
+    .offer-box {
+      padding: 2rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .deliverables {
+      margin: 2rem 0;
+      padding: 1.4rem;
+      background: #0b0b0b;
+      border: 1px solid var(--line);
+    }
+
+    .deliverables-title {
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .deliverables ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .deliverables li {
+      margin: 0.45rem 0;
+    }
+
+    .cta-block {
+      margin-top: 2.5rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.95rem 1.25rem;
+      color: #050505;
+      background: var(--text);
+      border: 1px solid var(--text);
+      text-decoration: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .button:hover {
+      color: var(--text);
       background: transparent;
-      border-color: #555;
     }
 
-    a.button.secondary:hover {
-      border-color: #f2f2f2;
+    .cta-note {
+      margin-top: 1rem;
+      color: var(--faint);
+      font-size: 0.92rem;
+      line-height: 1.55;
     }
 
-    ul {
-      color: #d5d5d5;
-      font-size: 1.05rem;
-      padding-left: 22px;
+    .contact-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--text);
+      font-size: clamp(1.3rem, 3vw, 2.2rem);
+      line-height: 1.2;
+      text-decoration: none;
+      border-bottom: 1px solid var(--text);
     }
 
-    li {
-      margin: 6px 0;
-    }
-
-    .small {
-      color: #aaa;
-      font-size: 0.95rem;
-    }
-
-    footer {
-      padding: 42px 22px;
+    .footer {
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--line);
       text-align: center;
-      color: #888;
-      font-size: 0.85rem;
-      font-family: Arial, sans-serif;
-    .goldmine-section {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 56px 22px 48px;
-  border-bottom: 1px solid #2b2b2b;
-}
+    }
 
-.goldmine-section {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 56px 22px 48px;
-  border-bottom: 1px solid #2b2b2b;
-}
+    .footer p {
+      max-width: none;
+      margin: 0;
+      color: var(--faint);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
 
-.goldmine-section h2 {
-  font-size: 2.8rem;
-  line-height: 1.1;
-  margin-bottom: 24px;
-}
+    @media (max-width: 800px) {
+      .site-nav {
+        gap: 0.75rem;
+        font-size: 0.66rem;
+      }
 
-.goldmine-section p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 18px;
-}
+      .section {
+        padding: 4rem 1.2rem;
+      }
+
+      .hero {
+        min-height: 80vh;
+        padding-top: 5rem;
+      }
+
+      .process-grid,
+      .books-grid,
+      .artifact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-card {
+        min-height: auto;
+      }
+
+      .offer-box {
+        padding: 1.4rem;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap">
-      <div class="kicker">Art · Perception · Attention · Form</div>
-      <h1>Ontological Praxis</h1>
-      <p class="tagline">
-        Art, artifacts, and field notes about perception, private attention,
-        strange fragments, and the instability of the obvious.
-      </p>
-    </div>
+
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="#fragments">Fragments</a>
+      <a href="#archive-test">Archive Test</a>
+      <a href="#books">Books</a>
+      <a href="#extraction-pass">Extraction Pass</a>
+      <a href="#artifacts">Artifacts</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <section class="wrap goldmine-section">
-  <h2>The Goldmine Is Already There</h2>
+  <main>
 
-  <p>
-    Most people are not short on ideas. They are buried under unconverted material:
-    notes, images, screenshots, drafts, saved links, voice memos, field observations,
-    half-built projects, recurring fixations, and private obsessions.
-  </p>
+    <section id="hero" class="section hero">
+      <div class="section-inner">
+        <p class="section-kicker">Ontological Praxis</p>
+        <h1>Art, artifacts, and field notes.</h1>
 
-  <p>
-    Some of that material contains real value. Not because it is already polished,
-    profitable, or important, but because it holds the first trace of a structure
-    that has not yet been made visible.
-  </p>
-
-  <p>
-    The problem is not lack of inspiration. The problem is extraction.
-    Ontological Praxis is a practice for pulling usable signal out of collected chaos:
-    finding the charge, naming the pattern, identifying the latent asset, and converting
-    it into an artifact another mind can use.
-  </p>
-</section>
-
-  <section>
-    <div class="wrap">
-      <h2>Books</h2>
-
-      <div class="book">
-        <h3>Obsession to Value</h3>
-        <p class="subtitle">
-          Turn What Won’t Leave You Alone into Something the World Can Use
+        <p class="hero-line">
+          A working practice for converting charged perception into form:
+          private attention, strange fragments, recurring obsessions, and the
+          instability of the obvious.
         </p>
 
-        <p>
-  A method for extracting signal, structure, and latent assets from the material
-  already accumulating in your life: notes, images, fragments, unfinished drafts,
-  field observations, recurring questions, and private obsessions.
-</p>
-
-        <div class="buttons">
-  <a class="button" href="https://www.amazon.com/dp/B0GX31ZGGZ">View on Amazon</a>
-</div>
+        <p class="hero-subline">
+          Field observation · perception · artifact-making · living archives
+        </p>
       </div>
+    </section>
 
-      <div class="book">
-        <h3>Asshole or Artist?</h3>
-        <p class="subtitle">
-          Notes on the Instability of the Obvious
-        </p>
+    <section id="fragments" class="section section-method">
+      <div class="section-inner">
+
+        <p class="section-kicker">Method</p>
+        <h2>From Fragments to Form</h2>
+        <h3>The Goldmine Is Already There</h3>
 
         <p>
-          A short work on perception, judgment, art, and the unstable boundary
-          between irritation and insight.
+          Most people are buried under unconverted material: notes, images,
+          screenshots, drafts, voice memos, field observations, unfinished
+          thoughts, recurring questions, private obsessions, and strange
+          fragments that refuse to disappear.
         </p>
 
-        <div class="buttons">
-          <a class="button" href="https://www.amazon.com/dp/B0GZ17XFB9">View on Amazon</a>
+        <p class="emphasis-line">
+          The problem is not inspiration. The problem is extraction.
+        </p>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <span class="process-label">Input</span>
+            <p>
+              Raw field-note documents, posts, observations, private notes,
+              recurring images, unfinished arguments, images, questions, and
+              scraps of language.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <span class="process-label">Extraction</span>
+            <p>
+              The material is analyzed for repetition, emotional charge,
+              unresolved questions, image-patterns, latent structure, and
+              artifact potential.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <span class="process-label">Output</span>
+            <p>
+              A coherent architecture: dominant obsessions, hidden patterns,
+              latent assets, possible artifact paths, and the first concrete
+              form the material wants to become.
+            </p>
+          </div>
         </div>
+
+        <p class="formula-line">
+          chaotic fragments → extracted pattern → coherent architecture → usable artifact
+        </p>
+
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="wrap">
-      <h2>Signal Extractor Beta</h2>
+    <section id="archive-test" class="section section-archive-test">
+      <div class="section-inner">
 
-      <p>
-        Send one messy fragment. Get back a Signal Read.
-      </p>
+        <p class="section-kicker">Demonstration</p>
+        <h2>Archive Test No. 001</h2>
+        <h3>A demonstration from my own archive.</h3>
 
-      <p>
-        A fragment can be a note, photograph, screenshot, voice memo transcript,
-        field observation, unfinished idea, strange phrase, or private obsession.
-      </p>
+        <p>
+          Ten chaotic fragments from my personal archive were analyzed. They did
+          not arrive as a finished project. They arrived as fragments: posts,
+          nature observations, strange phrases, unfinished arguments, private
+          language, recurring images, and obsessive scraps of attention.
+        </p>
 
-      <p>
-        The Signal Read returns:
-      </p>
+        <p>
+          The extraction produced two dominant structures.
+        </p>
 
-      <ul>
-        <li>what it appears to be</li>
-        <li>what it may actually be about</li>
-        <li>the hidden structure</li>
-        <li>possible artifact paths</li>
-        <li>the first thing to make</li>
-      </ul>
+        <div class="archive-structure">
+          <p class="archive-number">01</p>
+          <h4>Heterobifunctional Perception &amp; The Instability of the Obvious</h4>
+          <p>
+            A pattern around unstable judgment, social conflict, invisible
+            frames, and the way a single signal can perform entirely different
+            functions depending on the mind, body, history, or system it enters.
+          </p>
+        </div>
 
-      <p>
-        I am currently taking a small number of free beta passes in exchange for
-        honest feedback.
-      </p>
+        <div class="archive-structure">
+          <p class="archive-number">02</p>
+          <h4>Field Attention &amp; The Living Archive</h4>
+          <p>
+            A deeper pattern around field observation, natural systems,
+            astonishment, deposition, attention, and the conversion of fragile
+            perception into durable artifacts before the live edge of the idea
+            goes cold.
+          </p>
+        </div>
 
-      <div class="buttons">
-        <a class="button" href="mailto:ontologicalpraxis@proton.me?subject=Signal%20Extractor%20Beta%20Request">Request a beta pass</a>
+        <p>
+          This became the working architecture of Ontological Praxis.
+        </p>
+
+        <p>
+          Not because the original material was polished.<br />
+          Because the structure was already there.
+        </p>
+
+        <p class="formula-line">
+          chaotic fragments → extracted pattern → coherent architecture → usable artifact
+        </p>
+
       </div>
+    </section>
 
-      <p class="small">
-        One fragment only. Not your whole archive. Not an entire life system.
-        One live piece of material.
-      </p>
-    </div>
-  </section>
+    <section id="books" class="section section-books">
+      <div class="section-inner">
 
-  <section>
-    <div class="wrap">
-      <h2>Field notes / artifacts</h2>
+        <p class="section-kicker">Books & Artifacts</p>
+        <h2>Current Work</h2>
+        <h3>Small books and conceptual artifacts produced from charged perception.</h3>
 
-      <p>
-        Current lines of inquiry include ordinary spaces as field stations,
-        incompatible perceptual worlds, surface traces, insect-scale signal
-        systems, contact microphones, weather residue, and the instability
-        of the obvious.
-      </p>
+        <div class="books-grid">
+          <div class="book-card">
+            <h4>Obsession to Value</h4>
+            <p>
+              A method for converting recurring private obsessions into usable
+              artifacts: essays, books, images, systems, prompts, offers, and
+              public forms.
+            </p>
+          </div>
 
-      <p>
-        The recurring question is simple: what becomes visible when attention
-        treats the ordinary world as evidence?
-      </p>
-    </div>
-  </section>
+          <div class="book-card">
+            <h4>Asshole or Artist?</h4>
+            <p>
+              A perceptual artifact about judgment, social conflict, fractured
+              frames, and the instability of the obvious.
+            </p>
+          </div>
+        </div>
 
-  <section>
-    <div class="wrap">
-      <h2>Contact</h2>
+      </div>
+    </section>
 
-      <p>
-        For correspondence, beta requests, or serious inquiries:
-      </p>
+    <section id="extraction-pass" class="section section-offer">
+      <div class="section-inner offer-box">
 
-      <p>
-        <a class="button secondary" href="mailto:ontologicalpraxis@proton.me">ontologicalpraxis@proton.me</a>
-      </p>
-    </div>
-  </section>
+        <p class="section-kicker">Beta Offer</p>
+        <h2>Field-Note Extraction Pass</h2>
+        <h3>Send 5–20 fragments. Receive a short extraction map.</h3>
 
-  <footer>
-    © 2026 Ontological Praxis Press
+        <p>
+          Your fragments can be notes, images, screenshots, posts, voice memo
+          transcripts, field observations, unfinished ideas, strange phrases,
+          saved links, recurring questions, private obsessions, or pieces of a
+          project that has not yet found its form.
+        </p>
+
+        <p>
+          You do not need to organize them first.
+        </p>
+
+        <p>
+          The point is to see whether the material already contains a hidden
+          pattern.
+        </p>
+
+        <div class="deliverables">
+          <p class="deliverables-title">The extraction map returns:</p>
+          <ul>
+            <li>dominant obsession</li>
+            <li>hidden pattern</li>
+            <li>latent assets</li>
+            <li>possible artifact paths</li>
+            <li>strongest first move</li>
+          </ul>
+        </div>
+
+        <p>
+          I am currently taking a small number of beta passes in exchange for
+          honest feedback.
+        </p>
+
+        <div class="cta-block">
+          <a class="button" href="mailto:ontologicalpraxis@proton.me?subject=Field-Note%20Extraction%20Pass%20Request">
+            Request a beta pass
+          </a>
+
+          <p class="cta-note">
+            Send 5–20 fragments. Not your whole archive. Just enough material
+            for a signal to emerge.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="artifacts" class="section section-artifacts">
+      <div class="section-inner">
+
+        <p class="section-kicker">Field Notes</p>
+        <h2>Artifacts begin as contact.</h2>
+        <h3>Before something becomes a painting, a book, a method, or an offer, it often begins as a small act of noticing.</h3>
+
+        <div class="artifact-grid">
+          <div class="artifact-card">
+            <h4>Asphalt Watermarks</h4>
+            <p>
+              The asphalt watermarks began as field observations before they
+              became artifacts. A temporary mark became a durable perceptual
+              structure.
+            </p>
+          </div>
+
+          <div class="artifact-card">
+            <h4>Porch Coffee</h4>
+            <p>
+              Coffee left uncovered on the porch became a deposition trap:
+              pollen, leaf-dust, airborne grit, and whatever else the morning
+              placed there.
+            </p>
+          </div>
+
+          <div class="artifact-card">
+            <h4>Pond Life</h4>
+            <p>
+              A trained field of attention turns ordinary water into a dense
+              system of movement, micro-creatures, surface tension, and revealed
+              structure.
+            </p>
+          </div>
+
+          <div class="artifact-card">
+            <h4>Fragments</h4>
+            <p>
+              A strange phrase, unfinished thought, saved image, or recurring
+              question may be the first visible edge of a future artifact.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact" class="section section-contact">
+      <div class="section-inner">
+
+        <p class="section-kicker">Contact</p>
+        <h2>Send the fragments.</h2>
+
+        <p>
+          For Field-Note Extraction Pass requests, send 5–20 fragments and a
+          brief note about what kind of material you are sending.
+        </p>
+
+        <a class="contact-link" href="mailto:ontologicalpraxis@proton.me?subject=Field-Note%20Extraction%20Pass%20Request">
+          ontologicalpraxis@proton.me
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Ontological Praxis · Artifacts from charged perception</p>
   </footer>
+
 </body>
 </html>
