@@ -241,18 +241,30 @@
       padding: 24px;
     }
 
-    .video-wrap {
+    .video-fallback {
+      min-height: 260px;
       border-radius: 22px;
-      overflow: hidden;
       border: 1px solid var(--line);
-      background: #1f1b16;
+      background:
+        linear-gradient(145deg, rgba(31, 27, 22, 0.92), rgba(63, 79, 45, 0.88)),
+        #1f1b16;
+      color: #efe6d4;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    video {
-      width: 100%;
-      height: auto;
-      display: block;
-      background: #1f1b16;
+    .video-fallback h3 {
+      margin: 0 0 12px;
+      color: #fffaf0;
+      font-size: 1.35rem;
+      line-height: 1.2;
+    }
+
+    .video-fallback p {
+      margin: 0 0 12px;
+      font-size: 1.02rem;
     }
 
     .caption {
@@ -381,21 +393,33 @@
       align-items: start;
     }
 
+    .cover-link {
+      border-bottom: none;
+    }
+
     .book-cover {
+      width: 120px;
       aspect-ratio: 2 / 3;
       border-radius: 10px;
       background:
-        linear-gradient(160deg, rgba(93, 111, 69, 0.22), rgba(156, 122, 56, 0.20)),
+        linear-gradient(160deg, rgba(93, 111, 69, 0.24), rgba(156, 122, 56, 0.22)),
         var(--paper-2);
       border: 1px solid var(--line);
+      box-shadow: 0 12px 28px rgba(31, 27, 22, 0.16);
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 10px;
+      padding: 12px;
       color: var(--soft-ink);
-      font-size: 0.86rem;
+      font-size: 0.92rem;
       line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .book-cover:hover {
+      color: var(--accent-dark);
+      border-color: var(--accent);
     }
 
     .small-label {
@@ -562,15 +586,22 @@
 
       <div class="proof-panel">
         <div>
-          <div class="video-wrap">
-            <video controls preload="metadata">
-              <source src="signal-extraction-beta.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+          <div class="video-fallback">
+            <h3>Short video explanation</h3>
+
+            <p>
+              The current beta announcement includes a short video explaining the Signal
+              Extraction premise visually.
+            </p>
+
+            <p>
+              The offer is simple: send 5–15 charged fragments, and receive a structured
+              readout of hidden patterns, possible artifacts, and value signals.
+            </p>
           </div>
 
           <p class="caption">
-            Short video explanation of the Signal Extraction premise.
+            Video can be embedded later. The testimonial and beta offer are live now.
           </p>
         </div>
 
@@ -647,8 +678,8 @@
         </div>
 
         <div class="button-row">
-          <a class="button" href="mailto:clonedoc@gmail.com?subject=Signal%20Extraction%20Beta%20Request">Request a beta slot</a>
-          <a class="button secondary" href="#contact">Ask a question first</a>
+          <a class="button" href="mailto:ontologicalpraxis@proton.me?subject=Signal%20Extraction%20Beta%20Request">Request a beta slot</a>
+          <a class="button secondary" href="mailto:ontologicalpraxis@proton.me?subject=Signal%20Extraction%20Question">Ask a question first</a>
         </div>
       </div>
     </section>
@@ -711,9 +742,9 @@
 
       <div class="grid two">
         <article class="card book-card">
-          <div class="book-cover">
-            Obsession<br />to<br />Value
-          </div>
+          <a class="cover-link book-cover" href="https://www.amazon.com/dp/B0GX31ZGGZ" target="_blank" rel="noopener">
+            <span>Obsession<br>to<br>Value</span>
+          </a>
 
           <div>
             <span class="small-label">Ontological Praxis Press</span>
@@ -721,20 +752,21 @@
             <h3>Obsession to Value</h3>
 
             <p>
-              A compact field guide for converting charged fragments, obsessions, and
-              unfinished material into artifacts, offers, projects, and forms of value.
+              Turn what will not leave you alone into something the world can use.
+              A compact field guide for converting charged fragments, obsessions,
+              and unfinished material into artifacts, offers, projects, and forms of value.
             </p>
 
             <p>
-              <a href="https://www.amazon.com/s?k=Obsession+to+Value+Ontological+Praxis" target="_blank" rel="noopener">Find on Amazon</a>
+              <a href="https://www.amazon.com/dp/B0GX31ZGGZ" target="_blank" rel="noopener">View on Amazon</a>
             </p>
           </div>
         </article>
 
         <article class="card book-card">
-          <div class="book-cover">
-            Asshole<br />or<br />Artist?
-          </div>
+          <a class="cover-link book-cover" href="https://www.amazon.com/dp/B0GZ17XFB9" target="_blank" rel="noopener">
+            <span>Asshole<br>or<br>Artist?</span>
+          </a>
 
           <div>
             <span class="small-label">Ontological Praxis Press</span>
@@ -742,12 +774,13 @@
             <h3>Asshole or Artist?</h3>
 
             <p>
-              Notes on perception, friction, pattern-recognition, outsider intelligence,
-              and the instability of the obvious.
+              Notes on the instability of the obvious. A compact Ontological Praxis
+              book on perception, friction, pattern recognition, outsider intelligence,
+              and the charge hidden inside what other people dismiss.
             </p>
 
             <p>
-              <a href="https://www.amazon.com/s?k=Asshole+or+Artist+Ontological+Praxis" target="_blank" rel="noopener">Find on Amazon</a>
+              <a href="https://www.amazon.com/dp/B0GZ17XFB9" target="_blank" rel="noopener">View on Amazon</a>
             </p>
           </div>
         </article>
@@ -815,7 +848,7 @@
         <h3>Email</h3>
 
         <p>
-          <a href="mailto:clonedoc@gmail.com?subject=Signal%20Extraction%20Beta%20Request">clonedoc@gmail.com</a>
+          <a href="mailto:ontologicalpraxis@proton.me?subject=Signal%20Extraction%20Beta%20Request">ontologicalpraxis@proton.me</a>
         </p>
 
         <p>
