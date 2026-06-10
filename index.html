@@ -53,6 +53,12 @@
       border-bottom-color: var(--gold);
     }
 
+    img,
+    video {
+      max-width: 100%;
+      display: block;
+    }
+
     .site-header {
       position: sticky;
       top: 0;
@@ -241,30 +247,17 @@
       padding: 24px;
     }
 
-    .video-fallback {
-      min-height: 260px;
+    .video-wrap {
       border-radius: 22px;
+      overflow: hidden;
       border: 1px solid var(--line);
-      background:
-        linear-gradient(145deg, rgba(31, 27, 22, 0.92), rgba(63, 79, 45, 0.88)),
-        #1f1b16;
-      color: #efe6d4;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      background: #1f1b16;
     }
 
-    .video-fallback h3 {
-      margin: 0 0 12px;
-      color: #fffaf0;
-      font-size: 1.35rem;
-      line-height: 1.2;
-    }
-
-    .video-fallback p {
-      margin: 0 0 12px;
-      font-size: 1.02rem;
+    video {
+      width: 100%;
+      height: auto;
+      background: #1f1b16;
     }
 
     .caption {
@@ -397,29 +390,15 @@
       border-bottom: none;
     }
 
-    .book-cover {
+    .real-book-cover {
       width: 120px;
+      max-width: 100%;
       aspect-ratio: 2 / 3;
+      object-fit: cover;
       border-radius: 10px;
-      background:
-        linear-gradient(160deg, rgba(93, 111, 69, 0.24), rgba(156, 122, 56, 0.22)),
-        var(--paper-2);
       border: 1px solid var(--line);
       box-shadow: 0 12px 28px rgba(31, 27, 22, 0.16);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 12px;
-      color: var(--soft-ink);
-      font-size: 0.92rem;
-      line-height: 1.2;
-      font-weight: 700;
-    }
-
-    .book-cover:hover {
-      color: var(--accent-dark);
-      border-color: var(--accent);
+      background: var(--paper-2);
     }
 
     .small-label {
@@ -502,7 +481,7 @@
         grid-template-columns: 1fr;
       }
 
-      .book-cover {
+      .real-book-cover {
         width: 140px;
       }
 
@@ -586,22 +565,15 @@
 
       <div class="proof-panel">
         <div>
-          <div class="video-fallback">
-            <h3>Short video explanation</h3>
-
-            <p>
-              The current beta announcement includes a short video explaining the Signal
-              Extraction premise visually.
-            </p>
-
-            <p>
-              The offer is simple: send 5–15 charged fragments, and receive a structured
-              readout of hidden patterns, possible artifacts, and value signals.
-            </p>
+          <div class="video-wrap">
+            <video controls preload="metadata">
+              <source src="signal-extraction-beta.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
 
           <p class="caption">
-            Video can be embedded later. The testimonial and beta offer are live now.
+            Short video explanation of the Signal Extraction premise.
           </p>
         </div>
 
@@ -742,8 +714,8 @@
 
       <div class="grid two">
         <article class="card book-card">
-          <a class="cover-link book-cover" href="https://www.amazon.com/dp/B0GX31ZGGZ" target="_blank" rel="noopener">
-            <span>Obsession<br>to<br>Value</span>
+          <a class="cover-link" href="https://www.amazon.com/dp/B0GX31ZGGZ" target="_blank" rel="noopener">
+            <img class="real-book-cover" src="obsession-to-value-cover.jpg" alt="Cover of Obsession to Value by Ontological Praxis" />
           </a>
 
           <div>
@@ -764,8 +736,8 @@
         </article>
 
         <article class="card book-card">
-          <a class="cover-link book-cover" href="https://www.amazon.com/dp/B0GZ17XFB9" target="_blank" rel="noopener">
-            <span>Asshole<br>or<br>Artist?</span>
+          <a class="cover-link" href="https://www.amazon.com/dp/B0GZ17XFB9" target="_blank" rel="noopener">
+            <img class="real-book-cover" src="asshole-or-artist-cover.jpg" alt="Cover of Asshole or Artist? by Ontological Praxis" />
           </a>
 
           <div>
