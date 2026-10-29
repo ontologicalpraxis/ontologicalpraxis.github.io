@@ -349,6 +349,33 @@
       .nav-links { display: none; }
       .book { grid-template-columns: 86px 1fr; }
     }
+  
+    section { scroll-margin-top: 82px; }
+    .print-feature { background: #0a0a0a; color: #f7f2e9; }
+    .print-layout { max-width: 1120px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 52px; align-items: start; }
+    .print-art { margin: 0; }
+    .print-art img { width: 100%; height: auto; display: block; }
+    .print-art figcaption { color: #bcb5ac; font: 12px/1.5 Arial,sans-serif; margin-top: 14px; }
+    .print-feature .kicker { color: #ff5757; }
+    .print-copy { padding-top: 16px; }
+    .print-details { margin: 28px 0; font: 14px/1.6 Arial,sans-serif; }
+    .print-details div { display: grid; grid-template-columns: 70px 1fr; gap: 16px; border-top: 1px solid #383432; padding: 12px 0; }
+    .print-details dt { color: #bcb5ac; }
+    .print-details dd { margin: 0; }
+    .print-price { font-size: 40px; margin-bottom: 16px; }
+    .print-price span { color: #bcb5ac; font: 15px Arial,sans-serif; }
+    .print-feature .btn { background: #f7f2e9; color: #111; }
+    .print-note { font: 13px/1.6 Arial,sans-serif; color: #bcb5ac; margin-top: 16px; overflow-wrap: anywhere; }
+    .print-video { border-top: 1px solid #383432; padding-top: 26px; margin-top: 32px; }
+    .print-video h3 { font-size: 25px; }
+    .print-video video { width: 100%; display: block; background: #000; margin-top: 18px; }
+    a:focus-visible { outline: 3px solid #ff5757; outline-offset: 5px; }
+    @media (max-width: 860px) {
+      .print-layout { grid-template-columns: 1fr; gap: 28px; }
+      .nav-inner { flex-wrap: wrap; gap: 12px; }
+      .nav-links { display: flex; font-size: 10px; gap: 12px; }
+    }
+
   </style>
 </head>
 
@@ -357,6 +384,7 @@
     <div class="nav-inner">
       <a class="brand" href="#">Ontological Praxis</a>
       <div class="nav-links">
+        <a href="#prints">Prints</a>
         <a href="#practice">Practice</a>
         <a href="#examples">Examples</a>
         <a href="#books">Books</a>
@@ -371,6 +399,7 @@
       <h1>Attention leaves traces.</h1>
       <p class="lead">Photographs. Notes. Screenshots. Field observations. Strange objects. Recurring questions. Half-finished projects.</p>
       <p class="lead muted">The things that repeatedly capture your attention may not be random.</p>
+      <p><a class="btn" href="#prints">Explore the limited edition print</a></p>
       <div class="formula">Attention → Fragment → Pattern → Artifact</div>
     </div>
 
@@ -381,6 +410,41 @@
       <p>Write down the chain of attention that led you there.</p>
     </aside>
   </header>
+
+  
+  <section id="prints" class="print-feature">
+    <div class="wrap print-layout">
+      <figure class="print-art">
+        <a href="ant-trajectory-print.png" aria-label="View the complete Ant Trajectory print">
+          <img src="ant-trajectory-print.png" width="1086" height="1448" alt="A single ant’s looping trajectory traced in vivid red against black">
+        </a>
+        <figcaption>Ant Trajectory · Digital composition</figcaption>
+      </figure>
+      <div class="print-copy">
+        <div class="kicker">Limited edition · 10 prints</div>
+        <h2>Ant Trajectory</h2>
+        <p class="lead">Movement reveals structure.</p>
+        <p>A single ant moves through a Petri dish. Its path becomes a drawing: loops, returns, crossings, and changes of direction, gathered into one red trace.</p>
+        <p>This print records the movement of a living animal, translated from video into a visible trajectory.</p>
+        <dl class="print-details">
+          <div><dt>Size</dt><dd>18 × 24 inches · portrait</dd></div>
+          <div><dt>Paper</dt><dd>Satin finish · non-archival</dd></div>
+          <div><dt>Edition</dt><dd>10 identical prints · unframed</dd></div>
+        </dl>
+        <p class="print-price">$100 <span>+ shipping</span></p>
+        <a class="btn" href="mailto:ontologicalpraxis@proton.me?subject=Ant%20Trajectory%20Print%20Inquiry&amp;body=I%20am%20interested%20in%20an%20Ant%20Trajectory%20print.%0A%0AShipping%20ZIP%20or%20country%3A%20">Inquire about a print</a>
+        <p class="print-note">Email to confirm availability and shipping before purchasing.<br><a href="mailto:ontologicalpraxis@proton.me">ontologicalpraxis@proton.me</a></p>
+        <div class="print-video">
+          <h3>Watch the path emerge.</h3>
+          <video controls playsinline preload="metadata" aria-label="Short video showing the ant and its tracked trajectory">
+            <source src="ant-trajectory-source.mp4" type="video/mp4">
+            <a href="ant-trajectory-source.mp4">Watch the ant trajectory video</a>
+          </video>
+          <p class="print-note">A short look at the movement behind the print.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="practice">
     <div class="wrap two">
@@ -539,3 +603,4 @@
   </footer>
 </body>
 </html>
+
