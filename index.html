@@ -207,7 +207,7 @@
     .enlarge-hint { position:absolute; bottom:9px; right:9px; background:rgba(20,20,20,.8); color:#fff; padding:5px 8px; font:11px Arial,sans-serif; letter-spacing:.02em; }
     .art-lightbox { position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.93); display:none; align-items:center; justify-content:center; padding:55px 18px 28px; }
     .art-lightbox[aria-hidden="false"] { display:flex; }
-    .art-lightbox img { display:block; max-width:100%; max-height:calc(100dvh - 85px); width:auto; height:auto; object-fit:contain; }
+    .art-lightbox img { display:block; width:min(92vw, 1050px); height:calc(100dvh - 100px); max-height:850px; object-fit:contain; }
     .art-lightbox-close { position:absolute; top:10px; right:15px; background:transparent; color:#fff; border:1px solid #bbb; border-radius:50%; width:42px; height:42px; font:28px/1 Arial,sans-serif; cursor:pointer; }
     .art-lightbox-close:focus-visible, [data-art-lightbox]:focus-visible { outline:3px solid #bc7755; outline-offset:3px; }
     body.lightbox-open { overflow:hidden; }
