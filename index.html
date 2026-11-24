@@ -202,6 +202,16 @@
       background: #f5f2dc;
     }
 
+    .art-enlarge { position:relative; display:block; cursor:zoom-in; }
+    .art-enlarge img { width:100%; }
+    .enlarge-hint { position:absolute; bottom:9px; right:9px; background:rgba(20,20,20,.8); color:#fff; padding:5px 8px; font:11px Arial,sans-serif; letter-spacing:.02em; }
+    .art-lightbox { position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.93); display:none; align-items:center; justify-content:center; padding:55px 18px 28px; }
+    .art-lightbox[aria-hidden="false"] { display:flex; }
+    .art-lightbox img { display:block; max-width:100%; max-height:calc(100dvh - 85px); width:auto; height:auto; object-fit:contain; }
+    .art-lightbox-close { position:absolute; top:10px; right:15px; background:transparent; color:#fff; border:1px solid #bbb; border-radius:50%; width:42px; height:42px; font:28px/1 Arial,sans-serif; cursor:pointer; }
+    .art-lightbox-close:focus-visible, [data-art-lightbox]:focus-visible { outline:3px solid #bc7755; outline-offset:3px; }
+    body.lightbox-open { overflow:hidden; }
+
     .micro-body { padding: 22px; }
 
     .micro-number {
@@ -414,7 +424,7 @@
     <section id="prints" class="print-feature">
     <div class="wrap print-layout">
       <figure class="print-art">
-        <a href="ant-trace-complete.webp" aria-label="View the complete Ant Trajectory print">
+        <a href="ant-trace-complete.webp" data-art-lightbox aria-label="Enlarge Ant Trajectory print">
           <img src="ant-trace-complete.webp" width="1086" height="1448" alt="A single ant’s looping trajectory traced in vivid red against black">
         </a>
         <figcaption>Ant Trajectory · Digital composition</figcaption>
@@ -546,7 +556,7 @@
         </article>
 
         <article class="micro">
-          <img src="smoke-horse.webp" alt="Smoke Horse: black India ink forming a horse-like silhouette on a pale lightbox background">
+          <a class="art-enlarge" href="smoke-horse.webp" data-art-lightbox aria-label="Enlarge Smoke Horse photograph"><img src="smoke-horse.webp" alt="Smoke Horse: black India ink forming a horse-like silhouette on a pale lightbox background"><span class="enlarge-hint" aria-hidden="true">Click to enlarge</span></a>
           <div class="micro-body">
             <div class="micro-number">Creative Microdose</div>
             <h3>Smoke Horse</h3>
@@ -556,7 +566,7 @@
         </article>
 
         <article class="micro">
-          <img src="microdose-3.jpg" alt="Asphalt water stain and residue pattern">
+          <a class="art-enlarge" href="microdose-3.jpg" data-art-lightbox aria-label="Enlarge Residue of Attention photograph"><img src="microdose-3.jpg" alt="Asphalt water stain and residue pattern"><span class="enlarge-hint" aria-hidden="true">Click to enlarge</span></a>
           <div class="micro-body">
             <div class="micro-number">Creative Microdose</div>
             <h3>Residue of Attention</h3>
@@ -573,6 +583,43 @@
   <footer>
     Ontological Praxis · Attention leaves traces.
   </footer>
+  <div class="art-lightbox" id="art-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged artwork" aria-hidden="true">
+    <button class="art-lightbox-close" type="button" aria-label="Close enlarged artwork">×</button>
+    <img alt="">
+  </div>
+  <script>
+    (() => {
+      const box = document.getElementById('art-lightbox');
+      const picture = box.querySelector('img');
+      const closeButton = box.querySelector('button');
+      let lastFocus = null;
+      function close() {
+        box.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lightbox-open');
+        picture.removeAttribute('src');
+        if (lastFocus) lastFocus.focus();
+      }
+      document.querySelectorAll('[data-art-lightbox]').forEach(link => {
+        link.addEventListener('click', event => {
+          if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          lastFocus = link;
+          picture.src = link.getAttribute('href');
+          picture.alt = link.querySelector('img')?.alt || 'Artwork';
+          box.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('lightbox-open');
+          closeButton.focus();
+        });
+      });
+      closeButton.addEventListener('click', close);
+      box.addEventListener('click', event => { if (event.target === box) close(); });
+      document.addEventListener('keydown', event => {
+        if (box.getAttribute('aria-hidden') !== 'false') return;
+        if (event.key === 'Escape') close();
+        if (event.key === 'Tab') { event.preventDefault(); closeButton.focus(); }
+      });
+    })();
+  </script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0b343208eff24bdbacbc0e5b72a19edd"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
